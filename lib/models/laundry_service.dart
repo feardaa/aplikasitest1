@@ -159,6 +159,8 @@ class LaundryService extends LaundryServiceBase implements Identifiable {
     ];
   }
 
+
+
   factory LaundryService.fromMap(Map<String, dynamic> map) {
     return LaundryService(
       id: map['id'] ?? '',
