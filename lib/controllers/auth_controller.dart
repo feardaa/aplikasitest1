@@ -2,23 +2,19 @@ import 'package:aplikasitest1/models/user.dart';
 import 'package:aplikasitest1/services/auth_service.dart';
 import 'package:aplikasitest1/controllers/base_controller.dart';
 
-/// Controller untuk mengelola autentikasi
-/// Implementasi: Inheritance, Dependency Injection, State Management
 class AuthController extends BaseController {
   final AuthService _authService;
   User? _currentUser;
   bool _isLoggedIn = false;
 
-  // Dependency Injection
+
   AuthController(this._authService);
 
-  // Getters - Implementasi Encapsulation
   User? get currentUser => _currentUser;
   bool get isLoggedIn => _isLoggedIn;
   String get currentUsername => _currentUser?.username ?? 'Guest';
   String get currentUserId => _currentUser?.id ?? '';
 
-  /// Inisialisasi controller - cek apakah user sudah login
   Future<void> initialize() async {
     await executeWithLoading(() async {
       _isLoggedIn = await _authService.isLoggedIn();
@@ -32,7 +28,6 @@ class AuthController extends BaseController {
     });
   }
 
-  /// Login user
   Future<bool> login(String username, String password) async {
     if (username.isEmpty || password.isEmpty) {
       setError('Username dan password harus diisi');
@@ -57,7 +52,7 @@ class AuthController extends BaseController {
     });
   }
 
-  /// Register user baru
+
   Future<bool> register({
     required String username,
     required String password,
@@ -96,7 +91,7 @@ class AuthController extends BaseController {
     });
   }
 
-  /// Logout user
+ 
   Future<void> logout() async {
     await executeWithLoading(() async {
       await AuthService.logout();
@@ -106,7 +101,6 @@ class AuthController extends BaseController {
     });
   }
 
-  /// Update profile user
   Future<bool> updateProfile({
     String? username,
     String? email,
@@ -131,7 +125,6 @@ class AuthController extends BaseController {
     });
   }
 
-  /// Change password
   Future<bool> changePassword(String currentPassword, String newPassword) async {
     if (_currentUser == null) {
       setError('User belum login');
@@ -149,13 +142,13 @@ class AuthController extends BaseController {
         return false;
       }
 
-      // Simulasi perubahan password
+    
       setError(null);
       return true;
     });
   }
 
-  /// Cek apakah username tersedia
+ 
   Future<bool> isUsernameAvailable(String username) async {
     if (username.isEmpty) return false;
 
@@ -168,7 +161,7 @@ class AuthController extends BaseController {
     }
   }
 
-  /// Reset password (simulasi)
+
   Future<bool> resetPassword(String email) async {
     if (!_isValidEmail(email)) {
       setError('Format email tidak valid');
@@ -181,7 +174,6 @@ class AuthController extends BaseController {
     });
   }
 
-  // Private validation methods
   bool _isValidEmail(String email) {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }

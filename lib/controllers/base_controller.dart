@@ -1,16 +1,16 @@
 import 'package:flutter/foundation.dart';
 
-/// Abstract base controller - Implementasi Abstraction
+
 abstract class BaseController extends ChangeNotifier {
   bool _isLoading = false;
   String? _error;
 
-  // Protected getters
+  
   bool get isLoading => _isLoading;
   String? get error => _error;
   bool get hasError => _error != null;
 
-  // Protected methods
+
   @protected
   void setLoading(bool loading) {
     if (_isLoading != loading) {
@@ -30,7 +30,7 @@ abstract class BaseController extends ChangeNotifier {
   @protected
   void clearError() => setError(null);
 
-  // Template Method Pattern
+
   @protected
   Future<T> executeWithLoading<T>(Future<T> Function() operation) async {
     try {

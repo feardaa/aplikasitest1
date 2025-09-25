@@ -1,4 +1,3 @@
-// controllers/order_controller.dart
 import 'package:flutter/foundation.dart';
 import 'package:aplikasitest1/models/order.dart';
 import 'package:aplikasitest1/models/laundry_item.dart';
@@ -8,17 +7,15 @@ import 'package:aplikasitest1/services/order_service.dart';
 class OrderController extends ChangeNotifier {
   final OrderService _orderService = OrderService();
 
-  // Order management
   List<Order> _orders = [];
   bool _isLoading = false;
   String? _error;
 
-  // Current order being created
   LaundryService? _selectedService;
   List<LaundryItem> _currentOrderItems = [];
   PickupInfo? _pickupInfo;
 
-  // Getters
+
   List<Order> get orders => _orders;
   bool get isLoading => _isLoading;
   String? get error => _error;
@@ -28,7 +25,7 @@ class OrderController extends ChangeNotifier {
   List<LaundryItem> get currentOrderItems => _currentOrderItems;
   PickupInfo? get pickupInfo => _pickupInfo;
 
-  // Calculated properties
+
   double get currentOrderTotal {
     if (_selectedService == null) return 0.0;
     
@@ -37,11 +34,11 @@ class OrderController extends ChangeNotifier {
       total += item.totalPrice;
     }
     
-    // Apply service multiplier
+    
     total *= _selectedService!.multiplier;
     
-    // Add pickup and delivery fees
-    total += 5000; // pickup + delivery fee
+    
+    total += 5000; 
     
     return total;
   }
@@ -49,14 +46,14 @@ class OrderController extends ChangeNotifier {
   int get currentOrderItemCount {
     return _currentOrderItems.fold(0, (sum, item) {
       if (item.itemType.isPerKg) {
-        return sum + 1; // Count as 1 item regardless of weight
+        return sum + 1; 
       } else {
         return sum + item.quantity;
       }
     });
   }
 
-  // Service management
+  
   void setSelectedService(LaundryService service) {
     _selectedService = service;
     notifyListeners();
@@ -67,7 +64,7 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Item management with weight support
+  
   void addItem(
     ItemType itemType, {
     int quantity = 1,
@@ -75,28 +72,28 @@ class OrderController extends ChangeNotifier {
     String? notes,
   }) {
     try {
-      // Check if item already exists
+      
       final existingIndex = _currentOrderItems.indexWhere(
         (item) => item.itemType == itemType,
       );
 
       if (existingIndex >= 0) {
-        // Update existing item
+        
         final existingItem = _currentOrderItems[existingIndex];
         
         if (itemType.isPerKg) {
-          // For per-kg items, add to weight
+          
           _currentOrderItems[existingIndex] = existingItem.copyWithWeight(
             existingItem.weight + weight,
           );
         } else {
-          // For per-piece items, add to quantity
+        
           _currentOrderItems[existingIndex] = existingItem.copyWithQuantity(
             existingItem.quantity + quantity,
           );
         }
       } else {
-        // Create new item
+        
         final newItem = LaundryItem(
           id: 'item_${DateTime.now().millisecondsSinceEpoch}',
           itemType: itemType,
@@ -166,13 +163,13 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Get available items based on selected service
+  
   List<ItemType> getAvailableItems() {
     if (_selectedService == null) return [];
     return LaundryItem.getItemsByCategory(_selectedService!.category);
   }
 
-  // Order operations
+ 
   Future<Order?> createOrder(String userId, List<LaundryItem> items) async {
     if (_selectedService == null || _pickupInfo == null) {
       _error = 'Service atau pickup info belum dipilih';
@@ -203,10 +200,8 @@ class OrderController extends ChangeNotifier {
 
       final createdOrder = await _orderService.createOrder(order);
       
-      // Add to local list and refresh
       await loadOrders(userId);
       
-      // Clear current order
       clearCurrentOrder();
       
       return createdOrder;
@@ -252,8 +247,7 @@ class OrderController extends ChangeNotifier {
   Future<void> updateOrderStatus(String orderId, OrderStatus newStatus) async {
     try {
       await _orderService.updateOrderStatus(orderId, newStatus);
-      
-      // Update local list
+     
       final index = _orders.indexWhere((order) => order.id == orderId);
       if (index >= 0) {
         _orders[index] = _orders[index].updateStatus(newStatus);
@@ -310,7 +304,7 @@ class OrderController extends ChangeNotifier {
     }
   }
 
-  // Validation methods
+
   bool validateCurrentOrder() {
     if (_selectedService == null) {
       _error = 'Pilih layanan terlebih dahulu';
@@ -330,7 +324,7 @@ class OrderController extends ChangeNotifier {
       return false;
     }
 
-    // Validate weight for per-kg items
+
     for (var item in _currentOrderItems) {
       if (item.itemType.isPerKg && item.weight <= 0) {
         _error = 'Berat ${item.displayName} harus lebih dari 0 kg';
@@ -353,10 +347,9 @@ class OrderController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Additional helper methods for weight management
   void addItemsFromWeightSelection(Map<ItemType, double> itemWeights) {
     try {
-      // Clear existing items of the same category if needed
+   
       if (_selectedService != null) {
         _currentOrderItems.removeWhere(
           (item) => item.itemType.category == _selectedService!.category && item.itemType.isPerKg
@@ -369,7 +362,7 @@ class OrderController extends ChangeNotifier {
           final newItem = LaundryItem(
             id: 'item_${itemType.name}_${DateTime.now().millisecondsSinceEpoch}',
             itemType: itemType,
-            quantity: 1, // Not used for weight-based items
+            quantity: 1, 
             weight: weight,
           );
           _currentOrderItems.add(newItem);
@@ -383,7 +376,7 @@ class OrderController extends ChangeNotifier {
     }
   }
 
-  // Get total weight for current order (useful for display)
+
   double get currentOrderTotalWeight {
     return _currentOrderItems.fold(0.0, (sum, item) {
       if (item.itemType.isPerKg) {
@@ -393,7 +386,7 @@ class OrderController extends ChangeNotifier {
     });
   }
 
-  // Get subtotal without fees
+
   double get currentOrderSubtotal {
     if (_selectedService == null) return 0.0;
     
