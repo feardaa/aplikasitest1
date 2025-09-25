@@ -1,8 +1,5 @@
-// widgets/custom_button.dart
 import 'package:flutter/material.dart';
 
-/// CustomButton
-/// Tombol reusable dengan opsi full width, loading, dan style kustom
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;

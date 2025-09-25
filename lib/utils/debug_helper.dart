@@ -1,10 +1,8 @@
-// utils/debug_helper.dart
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class DebugHelper {
   
-  /// Print semua data yang tersimpan di SharedPreferences
   static Future<void> printAllData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -51,7 +49,7 @@ class DebugHelper {
     }
   }
 
-  /// Hapus semua data SharedPreferences
+ 
   static Future<void> clearAllData() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -62,7 +60,6 @@ class DebugHelper {
     }
   }
 
-  /// Tambah data dummy untuk testing
   static Future<void> addDummyOrder() async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -77,7 +74,7 @@ class DebugHelper {
           'name': 'Cuci Kering',
           'description': 'Cuci bersih dan pengeringan sempurna',
           'icon': '👕',
-          'color': 4280391411, // Colors.blue.value
+          'color': 4280391411, 
           'category': 'pakaian',
           'multiplier': 1.0,
           'estimatedDays': 2,

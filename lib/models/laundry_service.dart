@@ -1,10 +1,9 @@
-// models/laundry_service.dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'base_model.dart';
-import 'laundry_item.dart';
+import 'package:aplikasitest1/models/base_model.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
 
-/// Abstract class untuk service laundry - Implementasi Abstraction
+
 abstract class LaundryServiceBase extends BaseModel {
   String get name;
   String get description;
@@ -17,8 +16,7 @@ abstract class LaundryServiceBase extends BaseModel {
     int getEstimatedDays();
 }
 
-/// Concrete implementation untuk service laundry
-/// Implementasi: Inheritance, Polymorphism
+
 class LaundryService extends LaundryServiceBase implements Identifiable {
   final String _id;
   final String _name;
@@ -50,7 +48,6 @@ class LaundryService extends LaundryServiceBase implements Identifiable {
        _estimatedDays = estimatedDays,
        _isActive = isActive;
 
-  // Getters - Implementasi Encapsulation
   @override
   String get id => _id;
   
@@ -73,7 +70,6 @@ class LaundryService extends LaundryServiceBase implements Identifiable {
   
   bool get isActive => _isActive;
 
-  // Override abstract methods - Implementasi Polymorphism
   @override
   double calculatePrice(List<LaundryItem> items) {
     double totalPrice = 0;
@@ -88,7 +84,6 @@ class LaundryService extends LaundryServiceBase implements Identifiable {
   @override
   int getEstimatedDays() => _estimatedDays;
 
-  // Static factory untuk membuat predefined services
   static List<LaundryService> getDefaultServices() {
     return [
       LaundryService(
@@ -164,7 +159,6 @@ class LaundryService extends LaundryServiceBase implements Identifiable {
     ];
   }
 
-  // Factory constructors
   factory LaundryService.fromMap(Map<String, dynamic> map) {
     return LaundryService(
       id: map['id'] ?? '',

@@ -1,10 +1,9 @@
-// models/order.dart
 import 'dart:convert';
-import 'base_model.dart';
-import 'laundry_item.dart';
-import 'laundry_service.dart';
+import 'package:aplikasitest1/models/base_model.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
+import 'package:aplikasitest1/models/laundry_service.dart';
 
-/// Enum untuk status pesanan
+
 enum OrderStatus {
   menunggu('Menunggu', 'Pesanan sedang menunggu konfirmasi', 'menunggu'),
   dikonfirmasi('Dikonfirmasi', 'Pesanan telah dikonfirmasi', 'dikonfirmasi'),

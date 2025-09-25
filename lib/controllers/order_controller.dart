@@ -1,9 +1,9 @@
 // controllers/order_controller.dart
 import 'package:flutter/foundation.dart';
-import '../models/order.dart';
-import '../models/laundry_item.dart';
-import '../models/laundry_service.dart';
-import '../services/order_service.dart';
+import 'package:aplikasitest1/models/order.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
+import 'package:aplikasitest1/models/laundry_service.dart';
+import 'package:aplikasitest1/services/order_service.dart';
 
 class OrderController extends ChangeNotifier {
   final OrderService _orderService = OrderService();

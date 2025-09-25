@@ -1,23 +1,18 @@
-// utils/constants.dart
 import 'package:flutter/material.dart';
 
-/// Constants untuk aplikasi laundry
-/// Implementasi: Static constants, Color schemes, Configuration
 class AppConstants {
-  // Private constructor untuk mencegah instantiation
   AppConstants._();
 
-  // App Information
   static const String appName = 'LaundryKu';
   static const String appVersion = '1.0.0';
   static const String appDescription = 'Solusi laundry terpercaya untuk kebutuhan Anda';
 
-  // API Configuration (untuk future development)
+
   static const String baseUrl = 'https://api.laundryku.com';
   static const String apiVersion = 'v1';
   static const Duration requestTimeout = Duration(seconds: 30);
 
-  // Storage Keys
+
   static const String userKey = 'current_user';
   static const String usersKey = 'registered_users';
   static const String ordersKey = 'orders_data';
@@ -25,7 +20,7 @@ class AppConstants {
   static const String themeKey = 'app_theme';
   static const String languageKey = 'app_language';
 
-  // Default Values
+
   static const double defaultPickupFee = 5000.0;
   static const double defaultDeliveryFee = 5000.0;
   static const int defaultEstimatedDays = 3;
@@ -34,12 +29,12 @@ class AppConstants {
   static const int maxAddressLength = 200;
   static const int maxNotesLength = 500;
 
-  // Business Hours
+
   static const int openHour = 8;
   static const int closeHour = 20;
   static const List<int> workingDays = [1, 2, 3, 4, 5, 6]; // Monday to Saturday
 
-  // Validation Rules
+
   static const int minPasswordLength = 6;
   static const int maxPasswordLength = 50;
   static const int minUsernameLength = 3;
@@ -47,32 +42,29 @@ class AppConstants {
   static const int minPhoneLength = 10;
   static const int maxPhoneLength = 15;
 
-  // Animation Durations
+
   static const Duration shortAnimation = Duration(milliseconds: 200);
   static const Duration mediumAnimation = Duration(milliseconds: 400);
   static const Duration longAnimation = Duration(milliseconds: 600);
   static const Duration splashDuration = Duration(seconds: 5);
 
-  // Pagination
+
   static const int itemsPerPage = 20;
   static const int maxSearchResults = 100;
 }
 
-/// Color constants untuk tema aplikasi
 class AppColors {
   AppColors._();
 
-  // Primary Colors
   static const Color primary = Color(0xFF3F51B5); // Indigo
   static const Color primaryLight = Color(0xFF7986CB);
   static const Color primaryDark = Color(0xFF303F9F);
 
-  // Secondary Colors  
   static const Color secondary = Color(0xFF03DAC6);
   static const Color secondaryLight = Color(0xFF66FFF9);
   static const Color secondaryDark = Color(0xFF00A896);
 
-  // Status Colors
+
   static const Color success = Color(0xFF4CAF50);
   static const Color successLight = Color(0xFF81C784);
   static const Color successDark = Color(0xFF388E3C);
@@ -89,7 +81,6 @@ class AppColors {
   static const Color infoLight = Color(0xFF64B5F6);
   static const Color infoDark = Color(0xFF1976D2);
 
-  // Neutral Colors
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color grey50 = Color(0xFFFAFAFA);
@@ -103,38 +94,37 @@ class AppColors {
   static const Color grey800 = Color(0xFF424242);
   static const Color grey900 = Color(0xFF212121);
 
-  // Service Category Colors
   static const Map<String, Color> serviceColors = {
-    'cuci_pakaian': Color(0xFF2196F3), // Blue
-    'cuci_tas': Color(0xFF4CAF50),     // Green
-    'cuci_sepatu': Color(0xFFFF9800),  // Orange
-    'cuci_kering': Color(0xFF9C27B0),  // Purple
-    'setrika': Color(0xFFFF5722),      // Deep Orange
-    'cuci_karpet': Color(0xFF009688),  // Teal
+    'cuci_pakaian': Color(0xFF2196F3),
+    'cuci_tas': Color(0xFF4CAF50),     
+    'cuci_sepatu': Color(0xFFFF9800), 
+    'cuci_kering': Color(0xFF9C27B0), 
+    'setrika': Color(0xFFFF5722),     
+    'cuci_karpet': Color(0xFF009688),  
   };
 
-  // Order Status Colors
+
   static const Map<String, Color> statusColors = {
-    'menunggu': Color(0xFFFF9800),     // Orange
-    'dikonfirmasi': Color(0xFF2196F3), // Blue
-    'dijemput': Color(0xFF9C27B0),     // Purple
-    'diproses': Color(0xFF673AB7),     // Deep Purple
-    'selesai': Color(0xFF3F51B5),      // Indigo
-    'dikirim': Color(0xFF1976D2),      // Blue Dark
-    'diterima': Color(0xFF4CAF50),     // Green
-    'dibatalkan': Color(0xFFF44336),   // Red
+    'menunggu': Color(0xFFFF9800),    
+    'dikonfirmasi': Color(0xFF2196F3),
+    'dijemput': Color(0xFF9C27B0),     
+    'diproses': Color(0xFF673AB7),     
+    'selesai': Color(0xFF3F51B5),      
+    'dikirim': Color(0xFF1976D2),      
+    'diterima': Color(0xFF4CAF50),     
+    'dibatalkan': Color(0xFFF44336),   
   };
 }
 
-/// Typography constants
+
 class AppTypography {
   AppTypography._();
 
-  // Font Families
+  
   static const String primaryFont = 'Roboto';
   static const String secondaryFont = 'Poppins';
 
-  // Font Sizes
+
   static const double heading1 = 32.0;
   static const double heading2 = 24.0;
   static const double heading3 = 20.0;
@@ -149,7 +139,7 @@ class AppTypography {
   static const double caption = 10.0;
   static const double button = 14.0;
 
-  // Font Weights
+
   static const FontWeight light = FontWeight.w300;
   static const FontWeight regular = FontWeight.w400;
   static const FontWeight medium = FontWeight.w500;
@@ -158,7 +148,6 @@ class AppTypography {
   static const FontWeight extraBold = FontWeight.w800;
 }
 
-/// Spacing constants
 class AppSpacing {
   AppSpacing._();
 
@@ -169,21 +158,21 @@ class AppSpacing {
   static const double xl = 32.0;
   static const double xxl = 48.0;
 
-  // Padding
+ 
   static const EdgeInsets paddingXS = EdgeInsets.all(xs);
   static const EdgeInsets paddingSM = EdgeInsets.all(sm);
   static const EdgeInsets paddingMD = EdgeInsets.all(md);
   static const EdgeInsets paddingLG = EdgeInsets.all(lg);
   static const EdgeInsets paddingXL = EdgeInsets.all(xl);
 
-  // Margins
+ 
   static const EdgeInsets marginXS = EdgeInsets.all(xs);
   static const EdgeInsets marginSM = EdgeInsets.all(sm);
   static const EdgeInsets marginMD = EdgeInsets.all(md);
   static const EdgeInsets marginLG = EdgeInsets.all(lg);
   static const EdgeInsets marginXL = EdgeInsets.all(xl);
 
-  // Border Radius
+
   static const double radiusXS = 4.0;
   static const double radiusSM = 8.0;
   static const double radiusMD = 12.0;
@@ -192,11 +181,11 @@ class AppSpacing {
   static const double radiusCircle = 999.0;
 }
 
-/// Size constants
+
 class AppSizes {
   AppSizes._();
 
-  // Icon Sizes
+
   static const double iconXS = 16.0;
   static const double iconSM = 20.0;
   static const double iconMD = 24.0;
@@ -204,37 +193,37 @@ class AppSizes {
   static const double iconXL = 48.0;
   static const double iconXXL = 64.0;
 
-  // Button Heights
+ 
   static const double buttonHeightSM = 32.0;
   static const double buttonHeightMD = 40.0;
   static const double buttonHeightLG = 48.0;
   static const double buttonHeightXL = 56.0;
 
-  // Input Heights
+  
   static const double inputHeight = 48.0;
   static const double inputHeightSM = 40.0;
   static const double inputHeightLG = 56.0;
 
-  // Card Sizes
+
   static const double cardElevation = 2.0;
   static const double cardElevationHover = 8.0;
 
-  // Image Sizes
+ 
   static const double avatarSM = 32.0;
   static const double avatarMD = 48.0;
   static const double avatarLG = 64.0;
   static const double avatarXL = 96.0;
 
-  // Bottom Sheet
+
   static const double bottomSheetMaxHeight = 0.9;
   static const double bottomSheetBorderRadius = 16.0;
 
-  // App Bar
+ 
   static const double appBarHeight = 56.0;
   static const double appBarExpandedHeight = 200.0;
 }
 
-/// Route names constants
+
 class AppRoutes {
   AppRoutes._();
 
@@ -256,10 +245,9 @@ class AppRoutes {
   static const String privacyPolicy = '/privacy-policy';
 }
 
-/// Error messages constants
+
 class AppErrorMessages {
   AppErrorMessages._();
-
   // Auth Errors
   static const String invalidCredentials = 'Username atau password salah';
   static const String userNotFound = 'User tidak ditemukan';
@@ -268,20 +256,20 @@ class AppErrorMessages {
   static const String invalidEmail = 'Format email tidak valid';
   static const String invalidPhone = 'Format nomor telepon tidak valid';
 
-  // Network Errors
+
   static const String noInternetConnection = 'Tidak ada koneksi internet';
   static const String serverError = 'Terjadi kesalahan pada server';
   static const String requestTimeout = 'Request timeout, coba lagi';
   static const String unknownError = 'Terjadi kesalahan yang tidak diketahui';
 
-  // Validation Errors
+ 
   static const String fieldRequired = 'Field ini harus diisi';
   static const String passwordTooShort = 'Password minimal 6 karakter';
   static const String usernameTooShort = 'Username minimal 3 karakter';
   static const String phoneInvalid = 'Nomor telepon tidak valid';
   static const String emailInvalid = 'Format email tidak valid';
 
-  // Order Errors
+ 
   static const String orderNotFound = 'Pesanan tidak ditemukan';
   static const String cannotCancelOrder = 'Pesanan tidak dapat dibatalkan';
   static const String orderAlreadyCompleted = 'Pesanan sudah selesai';
@@ -291,7 +279,7 @@ class AppErrorMessages {
   static const String phoneRequired = 'Nomor telepon harus diisi';
 }
 
-/// Success messages constants
+
 class AppSuccessMessages {
   AppSuccessMessages._();
 

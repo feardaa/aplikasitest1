@@ -1,4 +1,3 @@
-// main.dart
 import 'package:aplikasitest1/view/admin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

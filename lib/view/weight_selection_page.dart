@@ -1,7 +1,7 @@
 // views/weight_selection_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../models/laundry_item.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
 
 class WeightSelectionPage extends StatefulWidget {
   final LaundryCategory category;

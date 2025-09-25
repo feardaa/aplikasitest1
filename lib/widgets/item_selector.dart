@@ -1,9 +1,7 @@
-// widgets/item_selector.dart
 import 'package:flutter/material.dart';
-import '../models/laundry_item.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
 
-/// Widget untuk memilih item laundry
-/// Implementasi: Composition, Encapsulation
+
 class ItemSelector extends StatefulWidget {
   final List<ItemType> items;
   final Function(ItemType itemType, int quantity, String? notes) onItemSelected;
@@ -198,8 +196,7 @@ class _ItemSelectorState extends State<ItemSelector> {
   }
 }
 
-/// Widget untuk menampilkan item dalam bentuk grid
-/// Alternative untuk dropdown approach
+
 class ItemGridSelector extends StatelessWidget {
   final List<ItemType> items;
   final Function(ItemType itemType) onItemTap;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-import 'base_model.dart';
+import 'package:aplikasitest1/models/base_model.dart';
 
 /// User model dengan implementasi OOP dan  Implementasi: Encapsulation, Inheritance, Polymorphism
 

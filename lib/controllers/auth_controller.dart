@@ -1,6 +1,6 @@
-import '../models/user.dart';
-import '../services/auth_service.dart';
-import 'base_controller.dart';
+import 'package:aplikasitest1/models/user.dart';
+import 'package:aplikasitest1/services/auth_service.dart';
+import 'package:aplikasitest1/controllers/base_controller.dart';
 
 /// Controller untuk mengelola autentikasi
 /// Implementasi: Inheritance, Dependency Injection, State Management

@@ -1,13 +1,10 @@
-// widgets/service_detail_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../models/laundry_service.dart';
-import '../models/laundry_item.dart';
-import '../controllers/order_controller.dart';
-// Import yang benar tanpa hide - arahkan ke file yang tepat
-import '../view/order_category_page.dart';
+import 'package:aplikasitest1/models/laundry_service.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
+import 'package:aplikasitest1/controllers/order_controller.dart';
+import 'package:aplikasitest1/view/order_category_page.dart';
 
-// Implementasi OOP: Inheritance, Polymorphism, Encapsulation
 class ServiceDetailPage extends StatefulWidget {
   final LaundryService service;
   final String userId;
@@ -31,7 +28,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
   final Map<ItemType, int> _selectedItems = {};
   final Map<ItemType, double> _selectedWeights = {};
 
-  // Override initState - Implementasi Polymorphism
   @override
   void initState() {
     super.initState();
@@ -39,7 +35,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     _loadAvailableItems();
   }
 
-  // Implementasi OOP: Encapsulation - private methods
   void _initializeAnimations() {
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 600),
@@ -55,27 +50,25 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     _availableItems = LaundryItem.getItemsByCategory(widget.service.category);
   }
 
-  // Override dispose method
   @override
   void dispose() {
     _animationController.dispose();
     super.dispose();
   }
 
-  // Private method untuk menambah item
+
   void _addToSelection(ItemType itemType) {
     setState(() {
       if (itemType.isPerKg) {
-        // Untuk item per kg, tambah 0.5 kg setiap kali
+        
         _selectedWeights[itemType] = (_selectedWeights[itemType] ?? 0.0) + 0.5;
       } else {
-        // Untuk item per piece
+       
         _selectedItems[itemType] = (_selectedItems[itemType] ?? 0) + 1;
       }
     });
   }
 
-  // Private method untuk mengurangi item
   void _removeFromSelection(ItemType itemType) {
     setState(() {
       if (itemType.isPerKg) {
@@ -98,23 +91,20 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     });
   }
 
-  // Getter untuk total items - Implementasi Encapsulation
   int get _totalItems {
     int total = _selectedItems.values.fold(0, (sum, qty) => sum + qty);
-    total += _selectedWeights.keys.length; // Count weight-based items as 1 each
+    total += _selectedWeights.keys.length; 
     return total;
   }
 
-  // Getter untuk total harga
   double get _totalPrice {
     double total = 0;
     
-    // Calculate from quantities (per piece)
+
     _selectedItems.forEach((itemType, qty) {
       total += itemType.basePrice * qty;
     });
     
-    // Calculate from weights (per kg)
     _selectedWeights.forEach((itemType, weight) {
       total += itemType.basePrice * weight;
     });
@@ -122,7 +112,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     return total * widget.service.multiplier;
   }
 
-  // Private method untuk proceed to order - DIPERBAIKI
   void _proceedToOrder() {
     if (_selectedItems.isEmpty && _selectedWeights.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -134,14 +123,12 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
       return;
     }
 
-    // Set selected service di order controller
+  
     final orderController = Provider.of<OrderController>(context, listen: false);
     orderController.setSelectedService(widget.service);
 
-    // Clear existing items
     orderController.clearCurrentOrder();
 
-    // Add quantity-based items to order controller
     _selectedItems.forEach((itemType, quantity) {
       orderController.addItem(
         itemType, 
@@ -150,7 +137,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
       );
     });
 
-    // Add weight-based items to order controller
+  
     _selectedWeights.forEach((itemType, weight) {
       orderController.addItem(
         itemType, 
@@ -159,7 +146,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
       );
     });
 
-    // Navigate ke CategoryOrderPage yang sudah ada, bukan LaundryOrderPage
+  
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -171,7 +158,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Helper method untuk format unit price - DIPERBAIKI
+
   String _getFormattedUnitPrice(ItemType itemType) {
     final unitLabel = itemType.isPerKg ? 'per kg' : 'per item';
     return 'Rp ${itemType.basePrice.toInt().toString().replaceAllMapped(
@@ -180,7 +167,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     )}/$unitLabel';
   }
 
-  // Polymorphism - override build method
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,7 +186,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Method untuk membuat AppBar
+
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       title: Text(widget.service.name),
@@ -210,7 +196,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Method untuk service header
   Widget _buildServiceHeader() {
     return Container(
       width: double.infinity,
@@ -262,7 +247,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Widget untuk info chip
   Widget _buildInfoChip(String text, IconData icon) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -288,7 +272,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Method untuk items list
   Widget _buildItemsList() {
     return ListView.builder(
       padding: const EdgeInsets.all(16),
@@ -303,7 +286,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Method untuk item card - DIPERBAIKI
+
   Widget _buildItemCard(ItemType item, int quantity, double weight) {
     final bool hasSelection = item.isPerKg ? weight > 0 : quantity > 0;
     
@@ -316,7 +299,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              // Item info
+              
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -342,7 +325,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
                 ),
               ),
 
-              // Quantity/Weight controls
               if (hasSelection) ...[
                 Row(
                   children: [
@@ -389,7 +371,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Widget untuk quantity button
   Widget _buildQuantityButton({
     required IconData icon,
     required VoidCallback onPressed,
@@ -409,7 +390,6 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Method untuk bottom summary
   Widget _buildBottomSummary() {
     return Container(
       padding: const EdgeInsets.all(20),
@@ -477,7 +457,7 @@ class _ServiceDetailPageState extends State<ServiceDetailPage>
     );
   }
 
-  // Helper methods
+
   String _formatWeight(double weight) {
     if (weight == weight.roundToDouble()) {
       return '${weight.round()} kg';

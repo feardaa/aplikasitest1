@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/order.dart';
+import 'package:aplikasitest1/models/order.dart';
 
 class OrderStepperWidget extends StatelessWidget {
   final OrderStatus currentStatus;

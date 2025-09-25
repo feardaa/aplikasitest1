@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'base_model.dart';
+import 'package:aplikasitest1/models/base_model.dart';
 
 /// Enum untuk kategori item laundry
 enum LaundryCategory {

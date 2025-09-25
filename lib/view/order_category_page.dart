@@ -1,10 +1,10 @@
 // views/category_order_page.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controllers/order_controller.dart';
-import '../models/laundry_item.dart';
-import '../models/laundry_service.dart';
-import '../models/order.dart';
+import 'package:aplikasitest1/controllers/order_controller.dart';
+import 'package:aplikasitest1/models/laundry_item.dart';
+import 'package:aplikasitest1/models/laundry_service.dart';
+import 'package:aplikasitest1/models/order.dart';
 import 'weight_selection_page.dart';
 
 class CategoryOrderPage extends StatefulWidget {

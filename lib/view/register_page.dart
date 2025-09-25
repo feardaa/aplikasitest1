@@ -1,7 +1,7 @@
 // view/register_page.dart
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart';
-import 'loginPage.dart';
+import 'package:aplikasitest1/services/auth_service.dart';
+import 'package:aplikasitest1/view/LoginPage.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -95,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
           key: _formKey,
           child: Column(
             children: [
-              // Mengganti icon dengan gambar Olaf
+            
               Container(
                 width: 120,
                 height: 120,
